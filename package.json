@@ -1,0 +1,29 @@
+{
+  "name": "autorent-core",
+  "version": "1.0.0",
+  "description": "system to rent car ",
+  "keywords": [
+    "123"
+  ],
+  "homepage": "https://github.com/mayyvotri/autorent-core#readme",
+  "bugs": {
+    "url": "https://github.com/mayyvotri/autorent-core/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayyvotri/autorent-core.git"
+  },
+  "license": "ISC",
+  "author": "Phan Thanh Thien Phu",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11"
+  }
+}
