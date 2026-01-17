@@ -1,29 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const bookingService = require("../service/booking");
+const authMiddleware = require("../middlewares/auth");
+const BookingController = require("../controller/bookingcontroller");
 
-router.get("/", (req, res) => {
-  const { userId } = req.query;
-  let bookings = bookingService.getAllBookings();
+// Tạo booking
+router.post("/", authMiddleware, BookingController.createBooking);
 
-  if (userId) {
-    bookings = bookings.filter((b) => b.userId === userId);
-  }
-
-  res.json(bookings);
-});
-
-router.post("/", (req, res) => {
-  try {
-    const booking = bookingService.createBooking(req.body);
-    res.status(201).json(booking);
-  } catch (err) {
-    if (err.message === "BOOKING_CONFLICT") {
-      res.status(409).json({ error: "Booking overlaps" });
-    } else {
-      res.status(400).json({ error: err.message });
-    }
-  }
-});
+// Lấy booking theo user
+router.get("/", BookingController.getBookings);
 
 module.exports = router;
