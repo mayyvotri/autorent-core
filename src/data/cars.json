@@ -1,0 +1,16 @@
+[
+  {
+    "id": "car1",
+    "brand": "Toyota",
+    "model": "Vios",
+    "pricePerDay": 500000,
+    "status": "AVAILABLE"
+  },
+  {
+    "id": "car2",
+    "brand": "Honda",
+    "model": "City",
+    "pricePerDay": 600000,
+    "status": "RENTED"
+  }
+]
