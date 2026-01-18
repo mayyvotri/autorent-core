@@ -1,14 +1,18 @@
 const fs = require("fs");
 const path = require("path");
+const { GET_DB } = require("../config/DB");
 
 const filePath = path.join(__dirname, "../data/cars.json");
 
 /**
  * Đọc toàn bộ xe
  */
-function getAllCars() {
-  const data = fs.readFileSync(filePath, "utf-8");
-  return JSON.parse(data);
+
+async function getAllCars(status) {
+  const db = GET_DB();
+  console.log("đã đến đây");
+  const filter = status ? { status } : {};
+  return db.collection("car").find(filter).toArray();
 }
 
 /**

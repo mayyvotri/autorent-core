@@ -1,6 +1,6 @@
 const CarModel = require("../models/carmodel");
 
-function getCars(status) {
+async function getCars(status) {
   const cars = CarModel.getAllCars();
 
   if (!status) return cars;

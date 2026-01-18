@@ -1,10 +1,14 @@
 const CarService = require("../service/carservice");
 
-function getCars(req, res) {
-  const { status } = req.query;
-  const cars = CarService.getCars(status);
+async function getCars(req, res) {
+  try {
+    const { status } = req.query;
+    const cars = await CarService.getCars(status);
 
-  res.json(cars);
+    res.status(200).json(cars);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 module.exports = {

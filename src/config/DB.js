@@ -14,13 +14,14 @@ let dataconnect;
 
 const CONNECT_DB = async () => {
   await client.connect();
-  dataconnect = client.db("phupttde180725");
+  dataconnect = client.db("autorent");
   console.log("getdata successful");
 };
 
 const GET_DB = () => {
-  if (!dataconnect) throw new console.error("must connect DB first");
-
+  if (!dataconnect) {
+    throw new Error("Must connect to DB first");
+  }
   return dataconnect;
 };
 module.exports = { CONNECT_DB, GET_DB };

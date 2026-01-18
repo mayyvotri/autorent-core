@@ -7,7 +7,9 @@ const bookingrouter = require("./routes/bookingrouter");
 const app = express();
 // connect DB
 const { CONNECT_DB, GET_DB } = require("./config/DB");
-CONNECT_DB();
+(async () => {
+  await CONNECT_DB();
+})();
 
 //   Middleware parse JSON
 
