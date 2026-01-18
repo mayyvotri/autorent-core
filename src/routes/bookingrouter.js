@@ -4,7 +4,7 @@ const authMiddleware = require("../middlewares/auth");
 const BookingController = require("../controller/bookingcontroller");
 
 // Tạo booking
-router.post("/", authMiddleware, BookingController.createBooking);
+router.post("/", BookingController.createBooking);
 
 // Lấy booking theo user
 router.get("/", BookingController.getBookings);

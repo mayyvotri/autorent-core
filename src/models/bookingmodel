@@ -1,20 +1,26 @@
-const fs = require("fs");
-const path = require("path");
+const { GET_DB } = require("../config/DB");
 
-const filePath = path.join(__dirname, "../data/bookings.json");
+/**
+ * Kiểm tra trùng lịch trong MongoDB
+ */
+async function checkConflict(carId, startDate, endDate) {
+  const db = GET_DB();
 
-function getAllBookings() {
-  const data = fs.readFileSync(filePath, "utf-8");
-  return JSON.parse(data);
+  return await db.collection("booking").findOne({
+    carId,
+    $and: [{ startDate: { $lte: endDate } }, { endDate: { $gte: startDate } }],
+  });
 }
 
-function saveBooking(booking) {
-  const bookings = getAllBookings();
-  bookings.push(booking);
-  fs.writeFileSync(filePath, JSON.stringify(bookings, null, 2));
+/**
+ * Lưu booking
+ */
+async function createBooking(booking) {
+  const db = GET_DB();
+  return await db.collection("booking").insertOne(booking);
 }
 
 module.exports = {
-  getAllBookings,
-  saveBooking,
+  checkConflict,
+  createBooking,
 };

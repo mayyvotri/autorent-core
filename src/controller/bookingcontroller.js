@@ -1,11 +1,15 @@
 const BookingService = require("../service/booking");
 
-function createBooking(req, res) {
+async function createBooking(req, res) {
   try {
-    const booking = BookingService.createBooking(req.body);
-    res.status(201).json(booking);
+    const booking = await BookingService.createBooking(req.body);
+
+    res.status(201).json({
+      message: "Booking created successfully",
+      booking,
+    });
   } catch (error) {
-    // Chuẩn hóa lỗi API
+    // Trùng lịch
     if (error.code === "BOOKING_CONFLICT") {
       return res.status(409).json({
         error: {
@@ -24,10 +28,14 @@ function createBooking(req, res) {
   }
 }
 
-function getBookings(req, res) {
-  const { userId } = req.query;
-  const bookings = BookingService.getBookings(userId);
-  res.json(bookings);
+async function getBookings(req, res) {
+  try {
+    const { userId } = req.query;
+    const bookings = await BookingService.getBookings(userId);
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 module.exports = {
