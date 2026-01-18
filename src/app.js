@@ -5,6 +5,9 @@ const carrouter = require("./routes/carrouter");
 const bookingrouter = require("./routes/bookingrouter");
 
 const app = express();
+// connect DB
+const { CONNECT_DB, GET_DB } = require("./config/DB");
+CONNECT_DB();
 
 //   Middleware parse JSON
 
