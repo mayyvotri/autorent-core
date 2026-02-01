@@ -13,6 +13,8 @@ const { CONNECT_DB, GET_DB } = require("./config/DB");
 
 //   Middleware parse JSON
 app.use(express.json());
+// Middleware parse HTML form (EJS POST)
+app.use(express.urlencoded({ extended: true }));
 // config viewengine
 configViewEngine(app);
 //  Health check

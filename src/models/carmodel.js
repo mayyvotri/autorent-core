@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { GET_DB } = require("../config/DB");
+const { ObjectId } = require("mongodb");
 
 const filePath = path.join(__dirname, "../data/cars.json");
 
@@ -18,9 +19,31 @@ async function getAllCars(status) {
 /**
  * Lấy xe theo ID
  */
-function getCarById(id) {
-  const cars = getAllCars();
-  return cars.find((car) => car.id === id);
+async function getCarById(id) {
+  const db = GET_DB();
+
+  // Try string id first
+  let car = await db.collection("car").findOne({ id });
+  if (car) return car;
+
+  // Fallback: numeric id
+  const numericId = Number(id);
+  if (!Number.isNaN(numericId)) {
+    car = await db.collection("car").findOne({ id: numericId });
+    if (car) return car;
+  }
+
+  // Fallback: Mongo ObjectId stored in _id
+  if (ObjectId.isValid(id)) {
+    try {
+      car = await db.collection("car").findOne({ _id: new ObjectId(id) });
+      if (car) return car;
+    } catch (_) {
+      // ignore
+    }
+  }
+
+  return null;
 }
 
 /**

@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middlewares/auth");
 const BookingController = require("../controller/bookingcontroller");
 
-// Tạo booking
+// UI: mở form tạo booking theo carId
+router.get("/createbooking/:id", BookingController.renderCreateBookingPage);
+// UI: submit form tạo booking
+router.post("/createbooking/:id", BookingController.createBookingFromForm);
+
+// API: Tạo booking (JSON)
 router.post("/createBooking/:id", BookingController.createBooking);
-router.get("./createbooking",)
 // Lấy booking theo user
 router.get("/", BookingController.getBookings);
 router.get("/getAllBooking", BookingController.getAllBooking)
