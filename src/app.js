@@ -3,7 +3,7 @@ const express = require("express");
 
 const carrouter = require("./routes/carrouter");
 const bookingrouter = require("./routes/bookingrouter");
-
+const configViewEngine = require("./config/viewEngine");
 const app = express();
 // connect DB
 const { CONNECT_DB, GET_DB } = require("./config/DB");
@@ -12,13 +12,13 @@ const { CONNECT_DB, GET_DB } = require("./config/DB");
 })();
 
 //   Middleware parse JSON
-
 app.use(express.json());
-
+// config viewengine
+configViewEngine(app);
 //  Health check
 
 app.get("/", (req, res) => {
-  res.json({ message: "AutoRent API is running" });
+  app.render("home.ejs");
 });
 
 //   Routes
