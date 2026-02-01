@@ -74,8 +74,8 @@
 
         <ul class="nav-links">
           <li><a href="/">Trang chủ</a></li>
-          <li><a href="/getCreate">Người dùng</a></li>
-          <li><a href="/about">Giới thiệu</a></li>
+          <li><a href="/getAllCars">Cars</a></li>
+          <li><a href="/GetAllBookings">Booking</a></li>
           <li><a href="/contact">Liên hệ</a></li>
         </ul>
       </div>
@@ -83,17 +83,17 @@
     <table>
       <tr>
         <th>ID</th>
-        <th>Email</th>
         <th>Name</th>
-        <th>City</th>
+        <th>email</th>
+        <th>Date</th>
         <th>Actions</th>
       </tr>
       <% for(let idx = 0; idx < listusers.length; idx++) { %>
       <tr>
-        <td><%= listusers[idx].id %></td>
-        <td><%= listusers[idx].email %></td>
-        <td><%= listusers[idx].name %></td>
-        <td><%= listusers[idx].city %></td>
+        <td><%= listusers[idx]._id %></td>
+        <td><%= listusers[idx].username %></td>
+        <td><%= listusers[idx].isPassword %></td>
+        <td><%= listusers[idx].createdAt %></td>
         <td>
           <a href="/edit/<%= listusers[idx].id %>"> edit</a>
           <button>delete</button>

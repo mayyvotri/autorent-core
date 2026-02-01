@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-
+const {getHomePage} = require("./controller/homecontroller")
 const carrouter = require("./routes/carrouter");
 const bookingrouter = require("./routes/bookingrouter");
 const configViewEngine = require("./config/viewEngine");
@@ -17,10 +17,7 @@ app.use(express.json());
 configViewEngine(app);
 //  Health check
 
-app.get("/", (req, res) => {
-  app.render("home.ejs");
-});
-
+app.get("/", getHomePage )
 //   Routes
 
 app.use("/cars", carrouter);

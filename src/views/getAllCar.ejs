@@ -86,39 +86,29 @@
     </nav>
     <table>
         <tr>
-            <th>_id</th>
-            <th>carId </th>
-            <th>userId</th>
-            <th>StartDate</th>
-            <th>EndDate</th>
-            <th>totalPrice</th>
-            <th>status</th>
+            
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price Per Day</th>
+            <th>Status</th>
+            <th>Actions</th>
         </tr>
-        <% for(let idx=0; idx < listbookings.length; idx++) { %>
+        <% for(let idx=0; idx < listcars.length; idx++) { %>
             <tr>
                 <td>
-                    <%= listbookings[idx]._id %>
+                    <%= listcars[idx].brand %>
                 </td>
                 <td>
-                    <%= listbookings[idx].carId %>
+                    <%= listcars[idx].model %>
                 </td>
                 <td>
-                    <%= listbookings[idx].userId %>
+                    <%= listcars[idx].pricePerDay %>
                 </td>
                 <td>
-                    <%= listbookings[idx].startDate %>
+                    <%= listcars[idx].status %>
                 </td>
                 <td>
-                    <%= listbookings[idx].cndDate %>
-                </td>
-                <td>
-                    <%= listbookings[idx].totalPrice %>
-                </td>
-                <td>
-                    <%= listbookings[idx].status %>
-                </td>
-                <td>
-                    <a href="/edit/<%= listbookings[idx].id %>"> edit</a>
+                    <a href="bookings/createbooking/<%= listcars[idx].id %>"> edit</a>
                     <button>delete</button>
                 </td>
             </tr>

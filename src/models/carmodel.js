@@ -10,7 +10,7 @@ const filePath = path.join(__dirname, "../data/cars.json");
 
 async function getAllCars(status) {
   const db = GET_DB();
-  console.log("đã đến đây");
+ 
   const filter = status ? { status } : {};
   return db.collection("car").find(filter).toArray();
 }
